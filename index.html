@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Геолокация</title>
+</head>
+<body>
+  <h1>Узнать моё местоположение</h1>
+  <button onclick="getLocation()">Показать координаты</button>
+  <p id="output"></p>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        document.getElementById("output").innerText = "Геолокация не поддерживается вашим браузером.";
+      }
+    }
+
+    function showPosition(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      document.getElementById("output").innerText =
+        `Широта: ${latitude}, Долгота: ${longitude}`;
+    }
+
+    function showError(error) {
+      alert("Ошибка: " + error.message);
+    }
+  </script>
+</body>
+</html>
